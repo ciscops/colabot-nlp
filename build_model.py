@@ -20,6 +20,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 import pickle
+import string
 
 
 def get_commands():
@@ -47,7 +48,6 @@ def create_pipeline():
 
 
 def preprocess(text):
-    import string
     text = [word.lower().strip().rstrip('s') for word in text.split()]
     text = [''.join(c for c in s if c not in string.punctuation) for s in text]
     return [' '.join(x for x in text if x)][0]

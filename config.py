@@ -5,4 +5,4 @@ import os
 
 class DefaultConfig:
     """ Preprocess Configuration """
-    SCRAPPER_SECRET = os.environ.get('SCRAPPER_SECRET', 'xxx')
+    NLP_SECRET = os.environ.get('NLP_SECRET', 'xxx')

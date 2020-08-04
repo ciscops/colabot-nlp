@@ -15,6 +15,7 @@ or implied.
 """
 from config import DefaultConfig as CONFIG
 import logging
+import string
 from flask import Response
 from flask import Flask
 from flask import request
@@ -36,7 +37,6 @@ def predict_thread(phrase, model):
 
 
 def preprocess(text):
-    import string
     text = [word.lower().strip().rstrip('s') for word in text.split()]
     text = [''.join(c for c in s if c not in string.punctuation) for s in text]
     return [' '.join(x for x in text if x)][0]
@@ -54,7 +54,7 @@ def server_route():
         logging.info(request)
         data = request.json
         try:
-            if data.get('secret', '') == CONFIG.SCRAPPER_SECRET:
+            if data.get('secret', '') == CONFIG.NLP_SECRET:
                 logging.info('Secret Matched!')
                 with open('model.pickle', 'rb') as g:
                     f_pipeline = pickle.load(g)
