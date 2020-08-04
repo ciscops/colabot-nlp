@@ -17,6 +17,7 @@ import yaml
 import pandas as pd
 from random import shuffle
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
 import pickle
@@ -43,7 +44,8 @@ def generate_df(tuple_commands):
 def create_pipeline():
     return Pipeline([
         ('bow', CountVectorizer()),
-        ('classifier', SGDClassifier(loss='modified_huber'))
+        ('tfidf', TfidfTransformer()),
+        ('classifier', SGDClassifier(loss='modified_huber', penalty='l2', alpha=0.0001))
     ])
 
 
