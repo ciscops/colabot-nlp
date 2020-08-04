@@ -1,0 +1,62 @@
+---
+create accounts:
+  - virl create account
+  - virl add user
+  - cml create account
+  - cml add user
+  - create account
+  - create accounts
+delete accounts:
+  - virl delete account
+  - virl remove user
+  - cml delete account
+  - cml remove user
+  - cml delete accounts
+reset passwords:
+  - reset passwords
+  - reset password
+virl delete lab:
+  - virl delete lab
+  - virl remove lab
+  - cml delete lab
+  - cml remove lab
+  - virl terminate lab
+virl list all labs:
+  - virl list all labs
+  - cml list all labs
+virl list my labs:
+  - virl list my labs
+  - cml list my labs
+virl list my labs details:
+  - virl list my labs details
+  - cml list my labs details
+  - virl list my lab details
+  - cml list my lab details
+virl list users:
+  - virl list users
+  - cml list accounts
+  - virl show users
+  - cml show account
+virl reset password:
+  - virl reset password
+  - cml reset password
+virl show server utilization:
+  - virl show server utilization
+  - cml show server utilization
+  - virl display server utilization
+  - virl display server utilization
+virl stop lab:
+  - virl stop lab
+  - cml stop lab
+  - cml halt lab
+  - virl halt lab
+help:
+  - help
+  - assistance
+  - how
+  - help virl
+  - help cml
+  - assist virl
+  - assist cml
+  - how virl
+  - how cml
