@@ -1,7 +1,8 @@
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get upgrade -y
+RUN apt-get update
+RUN apt-get upgrade -y
 RUN apt-get install software-properties-common -y
 RUN add-apt-repository ppa:deadsnakes/ppa -y
 RUN apt-get install python3.8 -y
