@@ -46,7 +46,23 @@ cml show server utilization:
   - virl show server utilization
   - cml show server utilization
   - virl display server utilization
-  - virl display server utilization
+  - cmldisplay server utilization
+  - virl show cpu utilization
+  - cml show cpu utilization
+  - virl display cpu utilization
+  - cml display cpu utilization
+  - virl show memory utilization
+  - cml show memory utilization
+  - virl display memory utilization
+  - cml display memory utilization
+  - virl show memory usage
+  - cml show memory usage
+  - virl display memory usage
+  - cml display memory usage
+  - virl show server usage
+  - cml show server usage
+  - virl display server usage
+  - cmldisplay server usage
 cml stop lab:
   - virl stop lab
   - cml stop lab
@@ -90,8 +106,7 @@ bye:
   - sayonara
   - see you later
 troubleshoot:
-  - why doesnt this work
-  - this is broken
+  - broken
   - busted
   - cracked
   - damaged
@@ -100,6 +115,15 @@ troubleshoot:
   - broke
   - crap
   - garbage
+  - fix
+  - black hole
+  - unreachable
+  - identify
+  - down
+  - excuse
+  - troubleshoot
+  - troubleshooting
+  - idea
 thanks:
   - thanks
   - thank you
@@ -114,3 +138,5 @@ upset:
   - f you
   - fu
   - f u
+  - screw you
+  - crazy
