@@ -65,3 +65,38 @@ help:
   - what
   - why
   - who
+  - hello
+  - hi
+  - howdy
+  - are you there
+  - hey
+  - what up
+  - good morning
+  - good evening
+  - good night
+  - sup
+  - heyy
+bye:
+  - bye
+  - goodbye
+  - good bye
+  - farewell
+  - later
+  - see you soon
+  - peace
+  - audios
+  - ciao
+  - au revoir
+  - sayonara
+  - see you later
+troubleshoot:
+  - why doesnt this work
+  - this is broken
+  - busted
+  - cracked
+  - damaged
+  - defective
+  - ping
+  - broke
+  - crap
+  - garbage
