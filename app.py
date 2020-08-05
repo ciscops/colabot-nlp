@@ -28,12 +28,18 @@ logging.basicConfig(filename='zzzlogs.log', level=logging.INFO, format=FORMAT)
 app = Flask(__name__)
 
 
-def predict_thread(phrase, model):
+def predict_thread(phrase, model) -> dict:
     preprocessed = preprocess(phrase)
-    result = model.predict([preprocessed])
-    score = model.score([phrase], result)
-    logging.info('command: ' + '"' + str(result[0]) + '"' + ' confidence: ' + str(float(score) * 100))
-    return {'text': str(result[0]), 'confidence': str(float(score) * 100)}
+    result = model.predict_proba([preprocessed])
+    logging.info(f'Phrase: {phrase}')
+    counter = 0
+    for x in model.classes_:
+        logging.info('Class: "' + x + '"         Probability: ' + str(result[0][counter]))
+        counter += 1
+    results = list(zip(model.classes_, result[0]))
+    results.sort(key=lambda x: x[1], reverse=True)
+    logging.info(results)
+    return {'scores': results}
 
 
 def preprocess(text):
@@ -42,9 +48,13 @@ def preprocess(text):
     return [' '.join(x for x in text if x)][0]
 
 
+with open('model.pickle', 'rb') as g:
+    f_pipeline = pickle.load(g)
+
+
 @app.route('/api/v1/nlp',  methods=['POST', 'GET'])
 def server_route():
-    results = ''
+    results = {}
     if request.method == 'GET':
         status_code = Response(status=200)
         return status_code
@@ -55,19 +65,16 @@ def server_route():
         data = request.json
         try:
             if data.get('secret', '') == CONFIG.NLP_SECRET:
-                logging.info('Secret Matched!')
-                with open('model.pickle', 'rb') as g:
-                    f_pipeline = pickle.load(g)
                 results = predict_thread(data['text'], f_pipeline)
                 logging.info('Made it past results')
                 return jsonify(results)
             else:
+                logging.warning(f'Unauthorized access attempt from: {request.remote_addr}')
                 status_code = Response(status=403)
                 return status_code
         except:
-            logging.warning('Malformed body format in POST from {ip}. / Received body was {body}'
-                            .format(ip=request.remote_addr, body=data))
-            status_code = Response(status=403)
+            logging.warning(f'Access error from {request.remote_addr}. Received body was {data}')
+            status_code = Response(status=400)
             return status_code
 
 

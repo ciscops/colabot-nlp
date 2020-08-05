@@ -45,7 +45,7 @@ def create_pipeline():
     return Pipeline([
         ('bow', CountVectorizer()),
         ('tfidf', TfidfTransformer()),
-        ('classifier', SGDClassifier(loss='modified_huber', penalty='l2', alpha=0.0001))
+        ('classifier', SGDClassifier(loss='modified_huber', alpha=0.01))
     ])
 
 
