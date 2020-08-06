@@ -31,7 +31,9 @@ cml list all labs:
 cml list my labs:
   - virl list my labs
   - cml list my labs
-cml list my labs details:
+cml list my lab details:
+  - virl list my lab details
+  - cml list my lab details
   - virl list my labs details
   - cml list my labs details
 cml list users:
@@ -68,6 +70,27 @@ cml stop lab:
   - cml stop lab
   - cml halt lab
   - virl halt lab
+cml show ip addresses:
+  - cml show ip addresses
+  - virl show ip addresses
+  - cml show ips
+  - cml show external ips
+  - cml get external ip addresses
+  - cml get external ips
+  - cml ip addresses
+  - cml show global ips
+  - cml show lab ips
+  - cml display ips
+  - cml display ip addresses
+  - virl show external ips
+  - virl get external ip addresses
+  - virl get external ips
+  - virl show ips
+  - virl ip addresses
+  - virl show global ips
+  - virl show lab ips
+  - virl display ips
+  - virl display ip addresses
 help:
   - help
   - assistance
@@ -124,6 +147,10 @@ troubleshoot:
   - troubleshoot
   - troubleshooting
   - idea
+  - root cause
+  - cause
+  - culprit
+  - issue
 thanks:
   - thanks
   - thank you
