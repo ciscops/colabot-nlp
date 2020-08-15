@@ -17,6 +17,8 @@ delete accounts:
   - remove account
 reset passwords:
   - reset passwords
+  - reset my passwords
+  - reset password
   - reset my password
 cml delete lab:
   - virl delete lab
@@ -111,10 +113,31 @@ help:
   - hey
   - what up
   - good morning
-  - good evening
   - good night
   - sup
   - heyy
+  - hello there
+  - good day
+  - hey
+  - hola
+  - aloha
+  - how are you
+  - hey wassup
+  - yo
+  - ola
+  - sup
+  - halloo
+  - sup
+  - hihi
+  - how are you today
+  - greetings
+  - lets get started
+  - howdy there
+  - choose
+  - mornin
+  - salutations
+  - wassup
+  - heyo
 bye:
   - bye
   - goodbye
@@ -128,6 +151,32 @@ bye:
   - au revoir
   - sayonara
   - see you later
+  - have a great weekend
+  - abort
+  - quit
+  - end
+  - done
+  - goodnight
+  - good night
+  - chat with your later
+  - talk to you later
+  - bye-bye
+  - ok bye
+  - see you next time
+  - good day to you
+  - see you
+  - that's all i needed
+  - im out
+  - so long
+  - finished
+  - catch you later
+  - ttyl
+  - see ya
+  - that will be all
+  - catch you later
+  - smell you later
+  - nice talking to you
+  - nice chatting with you
 troubleshoot:
   - broken
   - busted
@@ -154,6 +203,8 @@ troubleshoot:
 thanks:
   - thanks
   - thank you
+  - thanks for everything
+  - tnx
 upset:
   - angry
   - pisses
@@ -167,3 +218,56 @@ upset:
   - f u
   - screw you
   - crazy
+  - ruining my day
+  - ruined my day
+  - this
+  - ruin
+affirmation:
+  - tell me something uplifing
+  - tell me something affirming
+  - tell me something happy
+  - tell me a happy quote
+  - give me some good advice
+  - say something happy
+  - say something affirming
+  - say something uplifting
+  - make me feel better
+  - uplifing
+  - affirming
+  - happy
+  - advice
+  - improve mood
+  - mood
+  - affirmations
+  - put a smile on my face
+  - positive affimation
+  - positive advice
+  - inspirational
+accept_apology:
+  - im sorry
+  - i apologize
+  - apology
+  - sorry
+  - oops
+  - my bad
+  - excuse me
+  - pardon
+  - whoops
+  - i hope you can forgive me
+  - i owe you an apology
+  - ever so sorry
+  - how thoughtless of me
+  - how careless of me
+  - how sutpid of me
+  - i had that wrong
+  - i hope you can forgive me
+  - i sincerely apologize
+  - i wanted to tell you im sorry
+  - my apologies
+  - my fault
+  - my mistake
+  - im so sorry
+  - oh my bad
+  - sorry about that
+  - that was wrong of me
+  - i beg your pardon
