@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 
-COPY source.list /etc/apt/source.list
+COPY sources.list /etc/apt/sources.list
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get -y install software-properties-common curl vim wget unzip
