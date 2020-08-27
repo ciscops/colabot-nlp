@@ -63,19 +63,19 @@ spec:
             stage('Deploy new COLABot-nlp-dev and COLABot-nlp-prod to K8s cluster') {
                 if ( "${branch}" == "dev" ) {
                     try {
-                        sh "kubectl delete -f colabot-private/colabot_nlp/colabot-nlp-dev.yaml"
+                        sh "kubectl delete -f colabot-private/colabot_nlp-dev/colabot-nlp.yaml"
                     } catch(Exception ex) {
                         sh "echo No need to delete"
                     }
-                    sh "kubectl create -f colabot-private/colabot_nlp/colabot-nlp-dev.yaml"
+                    sh "kubectl create -f colabot-private/colabot_nlp-dev/colabot-nlp.yaml"
                     sh 'echo Finished'
                 } else if ( "${branch}" == "master" ) {
                     try {
-                        sh "kubectl delete -f colabot-private/colabot_nlp/colabot-nlp-prod.yaml"
+                        sh "kubectl delete -f colabot-private/colabot_nlp-prod/colabot-nlp.yaml"
                     } catch(Exception ex) {
                         sh "echo No need to delete"
                     }
-                    sh "kubectl create -f colabot-private/colabot_nlp/colabot-nlp-prod.yaml"
+                    sh "kubectl create -f colabot-private/colabot_nlp-prod/colabot-nlp.yaml"
                     sh 'echo Finished'
                 }
             }
