@@ -1,17 +1,14 @@
 FROM ubuntu:18.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get upgrade -y && apt-get install vim -y
-RUN apt-get install software-properties-common -y
-RUN add-apt-repository ppa:deadsnakes/ppa -y
-RUN apt-get install python3.8 -y
-RUN apt-get install python3-pip -y
-RUN apt-get install wget -y
-RUN apt-get install unzip -y
+RUN apt-get update && \
+    apt-get -y install software-properties-common curl vim wget unzip
 
-RUN apt-get install curl -y
-RUN apt-get install python3.8-venv
-RUN python3.8 -m venv venv
+RUN apt-get -y install python3-pip python-dev build-essential && \
+    apt-get -y install software-properties-common
+
+RUN apt-get -y install python3-venv
+RUN python3 -m venv venv
 
 COPY requirements.txt requirements.txt
 RUN venv/bin/pip3 install -r requirements.txt

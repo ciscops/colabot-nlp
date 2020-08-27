@@ -31,9 +31,17 @@ spec:
         container('docker') {
             stage('Clone repository') {
                 checkout scm
+                sh "echo '${env.JOB_NAME}'"
+                branch = getBranch()
+                sh "echo '${branch}'"
             }
             stage('Build container') {
-                colabot = docker.build("stmosher/colabot-nlp")
+                if ( "${branch}" == "master" ) {
+					imageName = "stmosher/colabot-nlp-prod"
+				} else if ( "${branch}" == "dev" ) {
+        			imageName = "stmosher/colabot-nlp-dev"
+				}
+                colabot = docker.build(imageName)
             }
             stage('Push container to docker hub ') {
                 docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
@@ -52,15 +60,31 @@ spec:
                     sh 'git clone https://"$user":"$pass"@github.com/ciscops/colabot-private.git'
 		        }
 		    }
-            stage('Deploy new COLABot-nlp to K8s cluster') {
-                try {
-                    sh "kubectl delete -f colabot-private/colabot_nlp/colabot-nlp.yaml"
-                } catch(Exception ex) {
-                    sh "echo No need to delete"
+            stage('Deploy new COLABot-nlp-dev and COLABot-nlp-prod to K8s cluster') {
+                if ( "${branch}" == "dev" ) {
+                    try {
+                        sh "kubectl delete -f colabot-private/colabot_nlp/colabot-nlp-dev.yaml"
+                    } catch(Exception ex) {
+                        sh "echo No need to delete"
+                    }
+                    sh "kubectl create -f colabot-private/colabot_nlp/colabot-nlp-dev.yaml"
+                    sh 'echo Finished'
+                } else if ( "${branch}" == "master" ) {
+                    try {
+                        sh "kubectl delete -f colabot-private/colabot_nlp/colabot-nlp-prod.yaml"
+                    } catch(Exception ex) {
+                        sh "echo No need to delete"
+                    }
+                    sh "kubectl create -f colabot-private/colabot_nlp/colabot-nlp-prod.yaml"
+                    sh 'echo Finished'
                 }
-                sh "kubectl create -f colabot-private/colabot_nlp/colabot-nlp.yaml"
-                sh 'echo Finished'
             }
         }
     }
+}
+
+def getBranch() {
+    tokens = "${env.JOB_NAME}".tokenize('/')
+    branch = tokens[tokens.size()-1]
+    return "${branch}"
 }
