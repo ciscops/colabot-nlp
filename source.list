@@ -1,0 +1,10 @@
+deb http://mirror.umd.edu/ubuntu/ bionic main restricted
+deb http://mirror.umd.edu/ubuntu/ bionic-updates main restricted
+deb http://mirror.umd.edu/ubuntu/ bionic universe
+deb http://mirror.umd.edu/ubuntu/ bionic-updates universe
+deb http://mirror.umd.edu/ubuntu/ bionic multiverse
+deb http://mirror.umd.edu/ubuntu/ bionic-updates multiverse
+deb http://mirror.umd.edu/ubuntu/ bionic-backports main restricted universe multiverse
+deb http://mirror.umd.edu/ubuntu/ bionic-security main restricted
+deb http://mirror.umd.edu/ubuntu/ bionic-security universe
+deb http://mirror.umd.edu/ubuntu/ bionic-security multiverse
