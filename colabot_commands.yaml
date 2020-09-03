@@ -7,6 +7,10 @@ create accounts:
   - create my account
   - create account
   - add account
+create aws account:
+  - create aws account
+  - add AWS account
+  - provision AWS account
 delete accounts:
   - virl delete account
   - virl remove user
