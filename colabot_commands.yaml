@@ -11,6 +11,10 @@ create aws account:
   - create aws account
   - add AWS account
   - provision AWS account
+create vpn account:
+  - create vpn account
+  - add vpn account
+  - provision vpn account
 delete accounts:
   - virl delete account
   - virl remove user
