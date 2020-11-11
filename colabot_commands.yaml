@@ -214,6 +214,15 @@ thanks:
   - thank you
   - thanks for everything
   - tnx
+build gitlab:
+  - build gitlab
+  - create gitlab
+  - deploy gitlab
+terminate gitlab:
+  - terminate gitlab
+  - destroy gitlab
+  - delete gitlab
+  - clean gitlab
 upset:
   - angry
   - pisses
