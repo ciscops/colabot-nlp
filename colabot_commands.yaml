@@ -223,6 +223,11 @@ terminate gitlab:
   - destroy gitlab
   - delete gitlab
   - clean gitlab
+extend gitlab:
+  - extend gitlab
+  - renew gitlab
+  - prolong gitlab
+  - continue gitlab
 upset:
   - angry
   - pisses
@@ -241,6 +246,13 @@ upset:
   - this
   - ruin
   - sad
+  - unhappy
+  - unpleased
+  - distressed
+  - glum
+  - gloomy
+  - bummed out
+  - crabby
 affirmation:
   - tell me something uplifing
   - tell me something affirming
