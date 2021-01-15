@@ -37,9 +37,9 @@ spec:
             }
             stage('Build container') {
                 if ( "${branch}" == "master" ) {
-					imageName = "stmosher/colabot-nlp-prod"
+					imageName = "ciscops/colabot-nlp-prod"
 				} else if ( "${branch}" == "dev" ) {
-        			imageName = "stmosher/colabot-nlp-dev"
+        			imageName = "ciscops/colabot-nlp-dev"
 				}
                 colabot = docker.build(imageName)
             }
