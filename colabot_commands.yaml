@@ -214,16 +214,16 @@ thanks:
   - thank you
   - thanks for everything
   - tnx
-build gitlab:
+gitlab build:
   - build gitlab
   - create gitlab
   - deploy gitlab
-terminate gitlab:
+gitlab terminate:
   - terminate gitlab
   - destroy gitlab
   - delete gitlab
   - clean gitlab
-extend gitlab:
+gitlab extend:
   - extend gitlab
   - renew gitlab
   - prolong gitlab
