@@ -104,22 +104,15 @@ cml show ip addresses:
 help:
   - help
   - assistance
-  - how
   - help virl
   - help cml
   - assist virl
   - assist cml
-  - how virl
-  - how cml
-  - what
-  - why
-  - who
   - hello
   - hi
   - howdy
   - are you there
   - hey
-  - what up
   - good morning
   - good night
   - sup
@@ -209,25 +202,14 @@ troubleshoot:
   - cause
   - culprit
   - issue
+  - what
+  - why
+  - how
 thanks:
   - thanks
   - thank you
   - thanks for everything
   - tnx
-gitlab build:
-  - build gitlab
-  - create gitlab
-  - deploy gitlab
-gitlab terminate:
-  - terminate gitlab
-  - destroy gitlab
-  - delete gitlab
-  - clean gitlab
-gitlab extend:
-  - extend gitlab
-  - renew gitlab
-  - prolong gitlab
-  - continue gitlab
 upset:
   - angry
   - pisses
