@@ -13,21 +13,21 @@ writing, software distributed under the License is distributed on an "AS
 IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
 or implied.
 """
+from random import shuffle
+import pickle
+import string
 import yaml
 import pandas as pd
-from random import shuffle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.linear_model import SGDClassifier
 from sklearn.pipeline import Pipeline
-import pickle
-import string
 
 
 def get_commands():
-    with open('colabot_commands.yaml', 'r') as f:
+    with open("colabot_commands.yaml", "r", encoding="utf8") as f:
         commands = yaml.safe_load(f)
-    list_of_tuples = list()
+    list_of_tuples = []
     for k in commands:
         for c in commands[k]:
             c = preprocess(c)
@@ -37,28 +37,30 @@ def get_commands():
 
 def generate_df(tuple_commands):
     shuffle(tuple_commands)
-    df = pd.DataFrame(tuple_commands, columns=['y', 'x'])
+    df = pd.DataFrame(tuple_commands, columns=["y", "x"])
     return df
 
 
 def create_pipeline():
-    return Pipeline([
-        ('bow', CountVectorizer()),
-        ('tfidf', TfidfTransformer()),
-        ('classifier', SGDClassifier(loss='modified_huber', alpha=0.01))
-    ])
+    return Pipeline(
+        [
+            ("bow", CountVectorizer()),
+            ("tfidf", TfidfTransformer()),
+            ("classifier", SGDClassifier(loss="modified_huber", alpha=0.01)),
+        ]
+    )
 
 
 def preprocess(text):
-    text = [word.lower().strip().rstrip('s') for word in text.split()]
-    text = [''.join(c for c in s if c not in string.punctuation) for s in text]
-    return [' '.join(x for x in text if x)][0]
+    text = [word.lower().strip().rstrip("s") for word in text.split()]
+    text = ["".join(c for c in s if c not in string.punctuation) for s in text]
+    return [" ".join(x for x in text if x)][0]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     cmds = get_commands()
-    df = generate_df(cmds)
+    df2 = generate_df(cmds)
     final_pipeline = create_pipeline()
-    final_pipeline.fit(df['x'], df['y'])
-    with open('model.pickle', 'wb') as f:
-        pickle.dump(final_pipeline, f, protocol=pickle.HIGHEST_PROTOCOL)
+    final_pipeline.fit(df2["x"], df2["y"])
+    with open("model.pickle", "wb") as f2:
+        pickle.dump(final_pipeline, f2, protocol=pickle.HIGHEST_PROTOCOL)
