@@ -22,7 +22,7 @@ spec:
       imagePullSecrets:
         - name: ghcr-login-secret
       containers:
-        - image: ciscops/colabot-nlp:main
+        - image: ghcr.io/ciscops/colabot-nlp:main
           imagePullPolicy: Always
           name: colabot-nlp-prod
           readinessProbe:
