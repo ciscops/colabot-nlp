@@ -11,6 +11,9 @@ create aws account:
   - create aws account
   - add AWS account
   - provision AWS account
+create aws key:
+  - create aws key
+  - add aws key  
 create vpn account:
   - create vpn account
   - add vpn account
