@@ -26,6 +26,7 @@ jobs:
       BRANCH: dev
       IMAGE_NAME: ${{ github.repository }} # "ciscops/colabot-nlp"
 
+    steps:  
       - name: Checkout code
         uses: actions/checkout@v2
 
