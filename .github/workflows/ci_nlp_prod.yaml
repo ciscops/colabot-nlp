@@ -1,0 +1,85 @@
+name: Colabot-nlp PY CI PROD
+on:
+  push:
+    branches: [main]
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9.7]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pip install virtualenv
+    - run: make pylint
+    - run: make check-format
+
+  build-image:
+    runs-on: ubuntu-latest
+
+    env:
+      REGISTRY: ghcr.io # registry
+      BRANCH: main
+      IMAGE_NAME: ${{ github.repository }} # "ciscops/colabot-nlp"
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+
+      - name: Build and push image
+        uses: docker/build-push-action@v2
+        with:
+          network: host
+          context: ./
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{env.BRANCH}}
+
+  deploy:
+    needs: build-image
+    runs-on: self-hosted
+
+    steps:
+      - name: install jinja2
+        run: |
+          sudo apt-get install python3-pip -y
+          sudo pip3 install jinja2
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get kubeConfig file from secrets
+        run: |
+          if [ ! -d ${HOME}/.kube ] ; then
+            mkdir ${HOME}/.kube
+          fi
+          echo "${{ secrets.KUBE_CONFIG }}" > ${HOME}/.kube/config
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.EKS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.EKS_AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Convert j2 template to yaml
+        run: python3 process-j2.py
+        env:
+          ENVIRONMENT: prod
+          NLP_SECRET: ${{ secrets.NLP_SECRET }}
+
+      - name: Apply and rollout
+        run: |
+          export PATH=/home/github/.local/bin/:$PATH
+          kubectl apply -f manifest/output-secrets-prod.yaml
+          kubectl apply -f manifest/output-manifest-prod.yaml
+          kubectl rollout restart deployment/colabot-nlp-prod
+          rm manifest/output-secrets-prod.yaml
+          rm manifest/output-manifest-prod.yaml

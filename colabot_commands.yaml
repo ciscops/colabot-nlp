@@ -13,7 +13,14 @@ create aws account:
   - provision AWS account
 create aws key:
   - create aws key
-  - add aws key  
+rotate aws key:
+  - rotate aws key
+reset aws key:
+  - reset aws key
+delete aws key:
+  - delete aws key
+aws key status:
+  - aws key status
 create vpn account:
   - create vpn account
   - add vpn account

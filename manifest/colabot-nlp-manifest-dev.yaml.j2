@@ -1,0 +1,51 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: colabot-nlp-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: colabot-nlp-dev
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: colabot-nlp-dev
+    spec:
+      imagePullSecrets:
+        - name: ghcr-login-secret
+      containers:
+        - image: ghcr.io/ciscops/colabot-nlp:dev
+          imagePullPolicy: Always
+          name: colabot-nlp-dev
+          readinessProbe:
+            httpGet:
+              path: /api/v1/nlp
+              port: 5005
+              scheme: HTTP
+          env:
+          - name: NLP_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: colabot-dev-nlp-secret
+                key: nlp_secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: colabot-nlp-dev-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 5005
+    name: http
+  selector:
+    app: colabot-nlp-dev
