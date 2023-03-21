@@ -111,7 +111,7 @@ cml show ip addresses:
   - virl show lab ips
   - virl display ips
   - virl display ip addresses
-release ip:
+release ip: 
 - release ip
 request ip:
 - request ip
